@@ -1,0 +1,24 @@
+# Render Blueprint (render.yaml) for DiplomatScholar & NYSC Lagos Placement Hunter
+# One-click deployment configuration for Render.com (Option A - Recommended)
+# Persistent Node.js Web Service: keeps 24/7 background Telegram bot and 4-hour automated scanning cron active!
+
+services:
+  - type: web
+    name: diplomatscholar-nysc-hub
+    runtime: node
+    plan: free
+    buildCommand: npm install --legacy-peer-deps && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: GEMINI_API_KEY
+        sync: false # Set in Render Dashboard -> Environment Variables
+      - key: TELEGRAM_BOT_TOKEN
+        value: 8854756208:AAGmabFVzYUvPPsyQcCm65OLCIVyBQaNcDQ
+      - key: SCAN_INTERVAL_HOURS
+        value: 4

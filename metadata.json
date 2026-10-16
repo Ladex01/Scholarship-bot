@@ -1,0 +1,6 @@
+{
+  "name": "DiplomatScholar AI - Fully Funded Masters Agent",
+  "description": "Autonomous AI agent and scholarship tracker for Nigerian graduates pursuing fully funded Masters in International Relations, Diplomacy & Political Science across North America & Europe.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
