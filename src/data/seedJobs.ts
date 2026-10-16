@@ -22,9 +22,7 @@ export const SEED_JOBS: JobOpportunity[] = [
       'Experience issuing formal RFQ emails, evaluating subcontractor bids, and maintaining vendor registers',
       'Proficiency with Google Workspace, Microsoft 365, and Zoom'
     ],
-    whyAdefolabiFits: '100% Experience Match: Exactly reproduces Adefolabi’s 1-year tenure at Kadaj Alliance LLC. He already reviews solicitations on SAM.gov, drafts formal RFQs, maintains vendor registers, and evaluates supplier bids according to FAR standards. Can be executed outside daytime NYSC hours as an evening contract!',
     nyscPpaFriendly: true,
-    contactEmail: 'talent@federalbidspro.com',
     checklist: [
       { id: 'fbp1', label: 'Submit resume detailing Kadaj Alliance LLC US federal contracting metrics', completed: true, required: true },
       { id: 'fbp2', label: 'Provide sample compliant RFQ email & SAM.gov evaluation framework', completed: false, required: true },
@@ -52,9 +50,7 @@ export const SEED_JOBS: JobOpportunity[] = [
       'Comfort maintaining dynamic vendor/supplier registers and managing bid repositories',
       'High attention to detail in document formatting, compliance matrices, and email correspondence'
     ],
-    whyAdefolabiFits: 'Adefolabi has verified daily operational experience maintaining bid libraries, organizing supplier catalogs, and matching subcontractors to solicitation requirements at Kadaj Alliance LLC.',
     nyscPpaFriendly: true,
-    contactEmail: 'proposals@govcontractpartners.com',
     checklist: [
       { id: 'gcp1', label: 'Submit proposal coordinator application with Kadaj Alliance portfolio', completed: false, required: true },
       { id: 'gcp2', label: 'Complete 45-minute compliance matrix assessment', completed: false, required: true }
@@ -81,9 +77,7 @@ export const SEED_JOBS: JobOpportunity[] = [
       'Capable of conducting multi-state supplier research and drafting outreach messages',
       'Flawless English writing and professional business communication'
     ],
-    whyAdefolabiFits: 'Matches Adefolabi’s documented resume: "Assessed bid opportunities on SAM.gov... researched prospective suppliers across multiple US states... drafted and issued formal RFQ emails."',
     nyscPpaFriendly: true,
-    contactEmail: 'careers@venturedeskconsulting.com',
     checklist: [
       { id: 'vd1', label: 'Submit cover letter highlighting SAM.gov and FAR knowledge', completed: false, required: true },
       { id: 'vd2', label: 'Confirm remote equipment and stable power/internet setup in Lagos', completed: false, required: true }
@@ -110,9 +104,7 @@ export const SEED_JOBS: JobOpportunity[] = [
       'Strong research and document version control',
       'Availability for 15-20 hours per week outside regular business hours'
     ],
-    whyAdefolabiFits: 'Flexible evening hours make it 100% non-conflicting with daytime NYSC PPA commitments while paying over ₦750k/mo in foreign exchange.',
     nyscPpaFriendly: true,
-    contactEmail: 'hr@globaltendersolutions.com',
     checklist: [
       { id: 'gts1', label: 'Send introductory proposal resume', completed: false, required: true }
     ],
@@ -140,9 +132,7 @@ export const SEED_JOBS: JobOpportunity[] = [
       'Direct understanding of purchase orders, supplier evaluation, and vendor coordination',
       'Currently mobilizing for NYSC and seeking corporate PPA on Lagos Mainland'
     ],
-    whyAdefolabiFits: 'Prime Mainland Location: Located in Oregun/Ikeja, significantly reducing commute times. Directly applies Adefolabi’s experience maintaining vendor registers, managing supplier correspondence, and evaluating quotations.',
     nyscPpaFriendly: true,
-    contactEmail: 'careers@sevenup.org',
     checklist: [
       { id: 'sbc1', label: 'Tailor resume focusing on vendor management and Kadaj Alliance procurement', completed: true, required: true },
       { id: 'sbc2', label: 'Generate SBC Corporate PPA Request Letter for submission in camp', completed: false, required: true },
@@ -170,9 +160,7 @@ export const SEED_JOBS: JobOpportunity[] = [
       'Strong organizational skills with supplier registers, tender documents, and price comparisons',
       'Mobilizing for NYSC service year with readiness to resume in Ikeja'
     ],
-    whyAdefolabiFits: 'Multinational FMCG giant right in Agidingbi, Ikeja. Kadaj Alliance compliance protocols match Cadbury’s strict global procurement governance standards.',
     nyscPpaFriendly: true,
-    contactEmail: 'cadbury.talent@mdlz.com',
     checklist: [
       { id: 'cad1', label: 'Prepare PPA request letter addressed to Cadbury HR Director', completed: false, required: true },
       { id: 'cad2', label: 'Submit CV on Mondelez careers portal', completed: false, required: true }
@@ -199,9 +187,7 @@ export const SEED_JOBS: JobOpportunity[] = [
       'High proficiency in Google Workspace, calendar management, and stakeholder email communications',
       'Experience in vendor liaison, logistics coordination, or e-commerce admin (PLSMINDS background aligns)'
     ],
-    whyAdefolabiFits: 'Yaba tech cluster: Adefolabi’s combined profile managing e-commerce supplier communication at PLSMINDS and contract administration at Kadaj Alliance fits Flutterwave’s fast-paced operations.',
     nyscPpaFriendly: true,
-    contactEmail: 'people@flutterwavego.com',
     checklist: [
       { id: 'flw1', label: 'Apply via Flutterwave careers with Twitter referral link', completed: false, required: true },
       { id: 'flw2', label: 'Highlight Google Workspace and vendor coordination in application', completed: false, required: true }
@@ -228,9 +214,7 @@ export const SEED_JOBS: JobOpportunity[] = [
       'Knowledge of vendor onboarding due diligence, compliance checks, and SLA monitoring',
       'Mobilizing for NYSC in November with orientation camp letter'
     ],
-    whyAdefolabiFits: 'Bank procurement department focused on vendor compliance, quotation assessments, and SLA tracking — precisely what Adefolabi did maintaining vendor registers and issuing formal RFQs.',
     nyscPpaFriendly: true,
-    contactEmail: 'talent@sterling.ng',
     checklist: [
       { id: 'st1', label: 'Submit CV highlighting vendor compliance registers', completed: false, required: true },
       { id: 'st2', label: 'Request Sterling Bank NYSC PPA placement letter', completed: false, required: true }
@@ -257,9 +241,7 @@ export const SEED_JOBS: JobOpportunity[] = [
       'Interest in public sector tender administration, anti-corruption compliance, and open contracting standards',
       'Ready to be posted directly by NYSC Lagos State Secretariat at Iyana-Ipaja'
     ],
-    whyAdefolabiFits: 'Highest Institutional Synergy: Connects Adefolabi’s Political Science Education degree from Lagos State University (LASU) with actual Lagos State public procurement governance at Alausa Secretariat! NYSC Camp officials at Iyana-Ipaja can approve this posting instantly!',
     nyscPpaFriendly: true,
-    contactEmail: 'recruitment@lagosppa.gov.ng',
     checklist: [
       { id: 'lpp1', label: 'Prepare formal letter addressed to General Manager, Lagos State Public Procurement Agency', completed: true, required: true },
       { id: 'lpp2', label: 'Present letter at Iyana-Ipaja NYSC Posting Desk for automatic endorsement', completed: false, required: true }
@@ -286,9 +268,7 @@ export const SEED_JOBS: JobOpportunity[] = [
       'Strong numeracy, supplier record keeping, and inventory tracking abilities',
       'Proficient in Microsoft Excel, Word, and Google Docs'
     ],
-    whyAdefolabiFits: 'Isolo / Ajao Estate industrial hub on the Mainland. Staff bus routes cover Mile 2, Festac, Oshodi, and Ikeja. Matches Adefolabi’s supplier register maintenance skills.',
     nyscPpaFriendly: true,
-    contactEmail: 'careers@chilimited.com',
     checklist: [
       { id: 'chi1', label: 'Submit CV highlighting Kadaj Alliance supplier records', completed: false, required: true }
     ],
@@ -314,9 +294,7 @@ export const SEED_JOBS: JobOpportunity[] = [
       'Experience reviewing client briefs, RFPs, and building presentation decks',
       'Excellent oral and written English communication'
     ],
-    whyAdefolabiFits: 'Gbagada Expressway location (central mainland). Directly utilizes Adefolabi’s proposal writing, tender validation, and repository management skills.',
     nyscPpaFriendly: true,
-    contactEmail: 'hr@gdmgroup.com.ng',
     checklist: [
       { id: 'gdm1', label: 'Submit pitch proposal portfolio and CV', completed: false, required: true }
     ],
@@ -342,9 +320,7 @@ export const SEED_JOBS: JobOpportunity[] = [
       'Experience reviewing product listings, minimum order quantities (MOQ), and customer communications',
       'Strong online research and market competitor tracking skills'
     ],
-    whyAdefolabiFits: 'Direct overlap with PLSMINDS: Adefolabi previously reviewed and approved product listings before platform publication, monitored MOQ, and responded to business correspondence.',
     nyscPpaFriendly: true,
-    contactEmail: 'recruitment@jumia.com.ng',
     checklist: [
       { id: 'jm1', label: 'Highlight PLSMINDS Lagos product listing and MOQ experience on resume', completed: true, required: true },
       { id: 'jm2', label: 'Apply on Jobberman quick-apply portal', completed: false, required: true }
@@ -371,9 +347,7 @@ export const SEED_JOBS: JobOpportunity[] = [
       'Hands-on proficiency with Google Docs, Sheets, Slides, and Zoom conferencing',
       'Customer-centric communication and problem-solving mentality'
     ],
-    whyAdefolabiFits: 'Matches Adefolabi’s documented resume skills in Calendar management, Email management, Customer service, and Google Workspace.',
     nyscPpaFriendly: true,
-    contactEmail: 'careers@babbangona.com',
     checklist: [
       { id: 'bg1', label: 'Submit CV highlighting administrative and customer service skills', completed: false, required: true },
       { id: 'bg2', label: 'Attend online interview', completed: false, required: true }
@@ -403,9 +377,7 @@ export const SEED_JOBS: JobOpportunity[] = [
       'Proficiency in Microsoft Office Suite (Excel, Word) & Google Workspace',
       'Currently mobilizing for NYSC or seeking Primary Place of Assignment (PPA) in Lagos'
     ],
-    whyAdefolabiFits: 'Perfect match: Adefolabi’s 1-year experience at Kadaj Alliance LLC issuing formal RFQ emails, evaluating federal solicitations, and maintaining vendor registers is 100% relevant to FMN’s commercial sourcing operations.',
     nyscPpaFriendly: true,
-    contactEmail: 'careers@fmnplc.com',
     checklist: [
       { id: 'fmn1', label: 'Tailor CV highlighting Kadaj Alliance US procurement and RFQ drafting', completed: true, required: true },
       { id: 'fmn2', label: 'Draft NYSC PPA Request Letter stating call-up date (4th of next month)', completed: false, required: true },
@@ -433,9 +405,7 @@ export const SEED_JOBS: JobOpportunity[] = [
       'Understanding of contracting compliance, tender evaluation, and supplier documentation',
       'Strong analytical, calendar management, and professional email correspondence skills'
     ],
-    whyAdefolabiFits: 'KPMG values Adefolabi’s B.Sc. in Political Science Education (3.57/5.0 CGPA) combined with real-world regulatory compliance work on US federal contracts (FAR regulations) at Kadaj Alliance LLC.',
     nyscPpaFriendly: true,
-    contactEmail: 'careers@ng.kpmg.com',
     checklist: [
       { id: 'kpmg1', label: 'Draft cover letter referencing federal tender compliance and LASU academic degree', completed: false, required: true },
       { id: 'kpmg2', label: 'Upload NYSC call-up slip / green card showing Lagos posting', completed: false, required: true }
@@ -462,9 +432,7 @@ export const SEED_JOBS: JobOpportunity[] = [
       'Demonstrated experience with vendor onboarding, inventory tracking, or procurement portals',
       'Exemplary written communication and Google Workspace proficiency'
     ],
-    whyAdefolabiFits: 'High-growth FinTech: Adefolabi’s dual experience managing vendor matching and US subcontracts at Kadaj Alliance LLC plus e-commerce product and MOQ monitoring at PLSMINDS makes him immediately plug-and-play.',
     nyscPpaFriendly: true,
-    contactEmail: 'talent@moniepoint.com',
     checklist: [
       { id: 'mp1', label: 'Submit resume via Moniepoint Greenhouse portal with Twitter link', completed: false, required: true },
       { id: 'mp2', label: 'Attach NYSC availability date (ready to resume immediately post-camp)', completed: false, required: true }
@@ -491,9 +459,7 @@ export const SEED_JOBS: JobOpportunity[] = [
       'Familiarity with RFP/RFQ solicitation analysis and proposal document compilation',
       'Attention to detail, proofreading, and document version management'
     ],
-    whyAdefolabiFits: 'Exact title alignment: Adefolabi has a full year of direct experience at Kadaj Alliance LLC preparing compliant technical and commercial proposals and managing bid libraries and knowledge repositories.',
     nyscPpaFriendly: true,
-    contactEmail: 'ng_pwc.enquiry@pwc.com',
     checklist: [
       { id: 'pwc1', label: 'Tailor Bidding & Proposal experience on Kadaj Alliance', completed: true, required: true },
       { id: 'pwc2', label: 'Complete PwC online psychometric assessment', completed: false, required: true }
@@ -520,9 +486,7 @@ export const SEED_JOBS: JobOpportunity[] = [
       'Knowledge of public sector procurement principles and institutional governance',
       'High competence in Google Workspace, data confidentiality, and virtual stakeholder meetings'
     ],
-    whyAdefolabiFits: 'Unbeatable synergy: Connects Adefolabi’s Political Science Education degree with his practical federal procurement background at Kadaj Alliance LLC. Unmatched resume asset for future Master’s scholarship applications (Chevening, DAAD, Erasmus)!',
     nyscPpaFriendly: true,
-    contactEmail: 'undp.ng.hr@undp.org',
     checklist: [
       { id: 'un1', label: 'Draft UN Personal History Form (P11) highlighting federal procurement and LASU degree', completed: false, required: true },
       { id: 'un2', label: 'Obtain NYSC posting verification letter for Lagos State', completed: false, required: true }
@@ -549,9 +513,7 @@ export const SEED_JOBS: JobOpportunity[] = [
       'Demonstrated understanding of supplier registers, RFQs, and purchase order documentation',
       'Excellent interpersonal communication and problem-solving abilities'
     ],
-    whyAdefolabiFits: 'Adefolabi’s daily duties maintaining vendor registers, conducting multi-state supplier research, and drafting RFQ emails at Kadaj Alliance matches Dangote’s supply chain requirements.',
     nyscPpaFriendly: true,
-    contactEmail: 'careers@dangote.com',
     checklist: [
       { id: 'dg1', label: 'Submit application on Dangote career website', completed: false, required: true },
       { id: 'dg2', label: 'Prepare NYSC PPA acceptance letter draft', completed: false, required: true }
@@ -578,9 +540,7 @@ export const SEED_JOBS: JobOpportunity[] = [
       'Experience assessing bid opportunities on business/government portals and tender validation',
       'Advanced MS Word, PowerPoint, and proposal repository management'
     ],
-    whyAdefolabiFits: 'Direct role parity: At Kadaj Alliance LLC, Adefolabi assesses bid opportunities, validates contracting opportunities, and maintains bid libraries, templates, and knowledge repositories.',
     nyscPpaFriendly: true,
-    contactEmail: 'careers@interswitchgroup.com',
     checklist: [
       { id: 'is1', label: 'Submit customized resume with Bids & Tender focus', completed: false, required: true },
       { id: 'is2', label: 'Connect with Interswitch Talent Acquisition on LinkedIn', completed: false, required: true }
@@ -607,9 +567,7 @@ export const SEED_JOBS: JobOpportunity[] = [
       'Strong online research, report proofreading, and institutional governance analysis skills',
       'Commitment to national economic and educational reform'
     ],
-    whyAdefolabiFits: 'Direct academic relevance: B.Sc. in Political Science Education provides the exact theoretical grounding NESG requires for public governance research, while PLSMINDS and Kadaj Alliance provide operational discipline.',
     nyscPpaFriendly: true,
-    contactEmail: 'info@nesgroup.org',
     checklist: [
       { id: 'ns1', label: 'Draft policy essay highlighting Nigerian institutional governance and educational policy', completed: false, required: true },
       { id: 'ns2', label: 'Submit application to NESG HR with NYSC posting letter', completed: false, required: true }
@@ -636,9 +594,7 @@ export const SEED_JOBS: JobOpportunity[] = [
       'Strong grasp of procurement documentation, purchase order tracking, and supplier compliance registers',
       'Mobilizing for NYSC in Lagos State (Batch C stream)'
     ],
-    whyAdefolabiFits: 'Energy sector giant: Adefolabi’s compliance-driven procurement experience at Kadaj Alliance LLC (maintaining supplier registers and conducting multi-state supplier research) is ideal for Oando’s vendor qualification protocols.',
     nyscPpaFriendly: true,
-    contactEmail: 'recruitment@oandoplc.com',
     checklist: [
       { id: 'oa1', label: 'Submit application via Oando portal with LASU degree certificate', completed: false, required: true },
       { id: 'oa2', label: 'Follow up with HR team regarding NYSC PPA placement letter', completed: false, required: true }
@@ -666,9 +622,7 @@ export const SEED_JOBS: JobOpportunity[] = [
       'Experience issuing RFQs and maintaining supplier registers (Kadaj Alliance US federal experience is highly valued)',
       'Familiarity with Lagos Mainland commute routes (Ilupeju / Ikorodu Road corridor)'
     ],
-    whyAdefolabiFits: 'Ideal Mainland match: Located in Ilupeju, eliminating 3rd Mainland Bridge traffic. Your 1-year experience maintaining supplier registers and preparing RFQ packages at Kadaj Alliance LLC mirrors PZ Cussons sourcing workflows.',
     nyscPpaFriendly: true,
-    contactEmail: 'careers.nigeria@pzcussons.com',
     checklist: [
       { id: 'pz1', label: 'Draft targeted CV featuring Kadaj Alliance supplier registers and RFQ management', completed: false, required: true },
       { id: 'pz2', label: 'Generate official Corporate PPA Request Letter addressed to HR Director', completed: false, required: true },
@@ -696,9 +650,7 @@ export const SEED_JOBS: JobOpportunity[] = [
       'Knowledge of public sector bidding compliance and formal tender document organization',
       'Proficiency in Microsoft Excel and proposal formatting'
     ],
-    whyAdefolabiFits: 'Direct synergy: Julius Berger tenders for major public infrastructure contracts in Nigeria. Adefolabi’s background analyzing US federal solicitations and evaluating subcontractor bids at Kadaj Alliance LLC provides immediate value to their tendering desk.',
     nyscPpaFriendly: true,
-    contactEmail: 'recruitment@julius-berger.com',
     checklist: [
       { id: 'jb1', label: 'Tailor tender compliance experience into CV', completed: false, required: true },
       { id: 'jb2', label: 'Generate Corporate NYSC PPA Request Letter to Head of Commercial Tendering', completed: false, required: true }
@@ -725,9 +677,7 @@ export const SEED_JOBS: JobOpportunity[] = [
       'Understanding of vendor code of conduct, ethical procurement, and supplier tracking',
       'NYSC mobilization ready for Lagos State'
     ],
-    whyAdefolabiFits: 'Kadaj Alliance LLC enforced strict FAR compliance standards across US suppliers. This compliance mindset directly aligns with Diageo Global Standards for procurement ethics.',
     nyscPpaFriendly: true,
-    contactEmail: 'talent.nigeria@diageo.com',
     checklist: [
       { id: 'gn1', label: 'Highlight ethical procurement and compliance monitoring from Kadaj Alliance', completed: false, required: true },
       { id: 'gn2', label: 'Submit via Diageo career website', completed: false, required: true }
@@ -754,9 +704,7 @@ export const SEED_JOBS: JobOpportunity[] = [
       'Interest in state youth employment policies, artisan procurement, and MSME grants',
       'NYSC Call-up posting to Lagos State'
     ],
-    whyAdefolabiFits: 'Perfect match for Political Science Education degree from LASU. Serving at Alausa provides direct access to Lagos State commissioners, permanent secretaries, and public procurement boards.',
     nyscPpaFriendly: true,
-    contactEmail: 'wealthcreation@lagosstate.gov.ng',
     checklist: [
       { id: 'mwe1', label: 'Prepare formal NYSC letter of intent for Lagos State Secretariat', completed: false, required: true },
       { id: 'mwe2', label: 'Submit LASU degree notification of results and NYSC Green Card', completed: false, required: true }
@@ -783,9 +731,7 @@ export const SEED_JOBS: JobOpportunity[] = [
       'High intellectual interest in Nigeria’s foreign policy, ECOWAS trade diplomacy, and multilateral governance',
       'Strong analytical writing and conference coordination skills'
     ],
-    whyAdefolabiFits: 'Flawless credential booster: Serving NYSC at NIIA under Nigeria’s premier foreign policy think tank will supercharge your future applications to Chevening, Fulbright, Oxford Blavatnik, and Columbia SIPA Masters programs!',
     nyscPpaFriendly: true,
-    contactEmail: 'info@niia.gov.ng',
     checklist: [
       { id: 'niia1', label: 'Draft 2-page policy concept note on US-Nigeria procurement trade diplomacy', completed: false, required: true },
       { id: 'niia2', label: 'Submit directly to NIIA Director-General office with NYSC posting letter', completed: false, required: true }
@@ -812,9 +758,7 @@ export const SEED_JOBS: JobOpportunity[] = [
       'Analytical mindset for software vendor evaluation and tech hardware procurement',
       'Strong contract negotiation and vendor register tracking'
     ],
-    whyAdefolabiFits: 'Interswitch is Africa’s premier payment unicorn. Your experience maintaining vendor registers and drafting formal commercial inquiries at Kadaj Alliance LLC matches their strategic sourcing requirements.',
     nyscPpaFriendly: true,
-    contactEmail: 'careers@interswitchgroup.com',
     checklist: [
       { id: 'is1', label: 'Submit CV highlighting commercial contracts and vendor management', completed: false, required: true },
       { id: 'is2', label: 'Complete online cognitive and situational assessment', completed: false, required: true }
@@ -841,9 +785,7 @@ export const SEED_JOBS: JobOpportunity[] = [
       'Demonstrated competence in inventory log maintenance, RFQ dispatch, and vendor communications',
       'Comfort working in Yaba Mainland tech ecosystem'
     ],
-    whyAdefolabiFits: 'Impact enterprise backed by Schwab Foundation and DFID. High operational synergy with your vendor tracking background.',
     nyscPpaFriendly: true,
-    contactEmail: 'recruitment@babbangona.com',
     checklist: [
       { id: 'bg1', label: 'Submit application via Babban Gona talent form', completed: false, required: true },
       { id: 'bg2', label: 'Provide Kadaj Alliance LLC recommendation letter', completed: false, required: true }
@@ -870,9 +812,7 @@ export const SEED_JOBS: JobOpportunity[] = [
       'Strong understanding of procurement registers, vendor qualification, and RFQ issuance',
       'Readiness to work across Mainland and Island campuses'
     ],
-    whyAdefolabiFits: 'Airtel handles thousands of equipment vendors. Your daily operational discipline issuing RFQs and checking bid compliance at Kadaj Alliance LLC gives you an edge over theoretical applicants.',
     nyscPpaFriendly: true,
-    contactEmail: 'careers@ng.airtel.com',
     checklist: [
       { id: 'at1', label: 'Apply via Airtel career portal', completed: false, required: true },
       { id: 'at2', label: 'Request Corporate PPA acceptance letter', completed: false, required: true }
@@ -899,9 +839,7 @@ export const SEED_JOBS: JobOpportunity[] = [
       'Detail-oriented reviewing tender proposals, RFQ responses, and contract clauses',
       'Mobilizing for NYSC in Lagos State'
     ],
-    whyAdefolabiFits: 'Honeywell Group manages conglomerates across energy, real estate, and ports. Your federal solicitation review skills at Kadaj Alliance LLC translate 1-to-1 into their corporate tender desk.',
     nyscPpaFriendly: true,
-    contactEmail: 'talent@honeywellgroup.com',
     checklist: [
       { id: 'hw1', label: 'Submit CV and cover letter outlining SAM.gov bidding metrics', completed: false, required: true },
       { id: 'hw2', label: 'Generate Corporate NYSC PPA Request Letter', completed: false, required: true }
@@ -928,9 +866,7 @@ export const SEED_JOBS: JobOpportunity[] = [
       'Knowledge of vendor onboarding, procurement documentation, and purchase invoices',
       'Mainland location accessibility (Surulere / Costain / Yaba axis)'
     ],
-    whyAdefolabiFits: 'Located in Surulere on the Mainland, perfect for avoiding Island commuting gridlock. Your vendor register management directly matches Leadway vendor onboarding workflows.',
     nyscPpaFriendly: true,
-    contactEmail: 'recruitment@leadway.com',
     checklist: [
       { id: 'lw1', label: 'Submit tailored CV to Leadway HR desk', completed: false, required: true },
       { id: 'lw2', label: 'Follow up with Corporate PPA Request Letter', completed: false, required: true }
@@ -957,9 +893,7 @@ export const SEED_JOBS: JobOpportunity[] = [
       'Understanding of compliance matrices, executive summaries, and subcontractor pricing sheets',
       'Availability for evening sync meetings (5:00 PM - 8:00 PM Lagos Time / 12:00 PM - 3:00 PM EST)'
     ],
-    whyAdefolabiFits: 'Direct Kadaj Alliance LLC alignment: Adefolabi routinely prepared bid packets, tracked solicitations on SAM.gov, and issued RFQs for federal contracts. Can be performed 100% remotely in the evening after NYSC PPA hours!',
     nyscPpaFriendly: true,
-    contactEmail: 'careers@bidexecs.com',
     checklist: [
       { id: 'be1', label: 'Send resume with Kadaj Alliance contract highlights to talent team', completed: false, required: true },
       { id: 'be2', label: 'Complete 30-minute proposal compliance exercise', completed: false, required: true }
@@ -986,9 +920,7 @@ export const SEED_JOBS: JobOpportunity[] = [
       'Ability to extract NAICS codes, set-aside designations (WOSB, SDVOSB, HubZone), and submission requirements',
       'Strong email communication and spreadsheet accuracy'
     ],
-    whyAdefolabiFits: 'This is Kadaj Alliance daily bread: reviewing solicitations, matching subcontractor qualifications, and synthesizing RFP requirements. 100% asynchronous work allows complete freedom around NYSC responsibilities.',
     nyscPpaFriendly: true,
-    contactEmail: 'ops@govwinpartners.com',
     checklist: [
       { id: 'gw1', label: 'Submit profile and SAM.gov search methodology portfolio', completed: false, required: true },
       { id: 'gw2', label: 'Complete practical solicitation shredding test', completed: false, required: true }
@@ -1015,9 +947,7 @@ export const SEED_JOBS: JobOpportunity[] = [
       'Ability to draft clear past performance summaries and technical volume outlines',
       'Strong research and English composition skills (Political Science Education graduate is ideal)'
     ],
-    whyAdefolabiFits: 'Exceptional combination of academic writing (B.Sc. Political Science Education) and practical US federal procurement at Kadaj Alliance LLC. Apex actively recruits overseas proposal coordinators.',
     nyscPpaFriendly: true,
-    contactEmail: 'recruitment@apexfederalsolutions.com',
     checklist: [
       { id: 'af1', label: 'Submit proposal writing sample and CV', completed: false, required: true },
       { id: 'af2', label: 'Attend virtual introductory call', completed: false, required: true }

@@ -1,7 +1,7 @@
 // Service Worker for DiplomatScholar & NYSC Hunter PWA
 // Provides offline capability so the app remains accessible on iPhone even when the laptop is shut off or offline.
 
-const CACHE_NAME = 'diplomatai-cache-v1';
+const CACHE_NAME = 'diplomatscholar-cache-v4';
 const PRECACHE_URLS = [
   '/',
   '/index.html',

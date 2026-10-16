@@ -545,13 +545,15 @@ export default function App() {
             relevanceScore: item.relevanceScore || 96,
             status: 'new',
             requirements: item.requirements || ['B.Sc. in Social Sciences or Political Science', 'Strong communication and procurement documentation'],
-            whyAdefolabiFits: item.whyAdefolabiFits || 'Direct fit: 1-year US federal bidding and vendor coordination at Kadaj Alliance LLC translates directly into corporate sourcing.',
+            responsibilities: item.responsibilities || [
+              'Coordinate vendor requisitions and purchase orders',
+              'Ensure documentation complies with corporate procurement standards',
+              'Assist in supplier price evaluations and contract tracking'
+            ],
             nyscPpaFriendly: item.nyscPpaFriendly !== undefined ? item.nyscPpaFriendly : true,
-            contactEmail: item.contactEmail || 'careers@company.com',
             checklist: [
-              { id: 'jc1', label: 'Tailor CV highlighting Kadaj Alliance US federal procurement experience', completed: false, required: true },
+              { id: 'jc1', label: 'Submit application via official portal', completed: false, required: true },
               { id: 'jc2', label: 'Generate official Corporate NYSC PPA Request Letter', completed: false, required: true },
-              { id: 'jc3', label: 'Submit application via portal & send cold email to HR', completed: false, required: true },
             ],
             notes: item.notes || 'Identified via autonomous job intelligence scan',
             discoveredAt: new Date().toISOString().split('T')[0],

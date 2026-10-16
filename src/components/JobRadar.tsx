@@ -1,21 +1,20 @@
 import React, { useState } from 'react';
 import {
   Search,
-  Building,
+  Building2,
   MapPin,
-  Calendar,
   Clock,
   Sparkles,
-  ArrowRight,
   Bookmark,
   CheckCircle2,
   Send,
   Briefcase,
-  DollarSign,
   ChevronRight,
-  ExternalLink
+  ExternalLink,
+  ShieldCheck,
+  Globe
 } from 'lucide-react';
-import { JobOpportunity, JobWorkType, JobCategory, ApplicationStatus } from '../types';
+import { JobOpportunity, ApplicationStatus } from '../types';
 
 interface JobRadarProps {
   jobs: JobOpportunity[];
@@ -37,42 +36,47 @@ export const JobRadar: React.FC<JobRadarProps> = ({
   onOpenDiagnostic,
 }) => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedLocationCorridor, setSelectedLocationCorridor] = useState<'all' | 'mainland' | 'island' | 'remote_usd'>('all');
+  const [selectedCategory, setSelectedCategory] = useState<'all' | 'nysc_lagos' | 'us_remote'>('all');
   const [selectedWorkType, setSelectedWorkType] = useState<string>('all');
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedStatus, setSelectedStatus] = useState<string>('all');
+  const [hideExpired, setHideExpired] = useState<boolean>(true);
+
+  // Today timestamp for filtering expired positions
+  const todayTimestamp = new Date().setHours(0, 0, 0, 0);
 
   // Filter jobs
   const filteredJobs = jobs.filter((j) => {
-    // Search query
-    const textToMatch = `${j.title} ${j.company} ${j.location} ${j.category} ${j.whyAdefolabiFits} ${j.source} ${j.notes}`.toLowerCase();
+    // 1. Expiration Filter
+    if (hideExpired && j.deadline) {
+      const deadlineDate = new Date(j.deadline).getTime();
+      if (!isNaN(deadlineDate) && deadlineDate < todayTimestamp) {
+        return false;
+      }
+    }
+
+    // 2. Search query
+    const textToMatch = `${j.title} ${j.company} ${j.location} ${j.category} ${j.source} ${j.notes}`.toLowerCase();
     if (searchQuery && !textToMatch.includes(searchQuery.toLowerCase())) {
       return false;
     }
 
-    // Location corridor filter
-    if (selectedLocationCorridor === 'mainland') {
-      const isMainland = /mainland|ikeja|yaba|maryland|ilupeju|surulere|isolo|alausa|oregun|apapa|ogba/i.test(j.location);
-      if (!isMainland) return false;
-    } else if (selectedLocationCorridor === 'island') {
-      const isIsland = /victoria island|ikoyi|lekki|\bvi\b|falomo|landmark|ozumba|marina/i.test(j.location);
-      if (!isIsland) return false;
-    } else if (selectedLocationCorridor === 'remote_usd') {
-      const isRemoteUsd = j.salaryStipend.includes('$') || j.jobType === 'Remote Contractor' || /remote/i.test(j.workType);
-      if (!isRemoteUsd) return false;
+    // 3. Category Filter: NYSC Lagos vs US Remote (No mainland/island division)
+    const isUsRemote = j.salaryStipend.includes('$') || j.jobType === 'Remote Contractor' || /remote/i.test(j.workType) || /us /i.test(j.title);
+    const isLagosNysc = /lagos/i.test(j.location) || j.nyscPpaFriendly || j.jobType === 'NYSC PPA' || !isUsRemote;
+
+    if (selectedCategory === 'nysc_lagos' && !isLagosNysc) {
+      return false;
+    }
+    if (selectedCategory === 'us_remote' && !isUsRemote) {
+      return false;
     }
 
-    // Work type
+    // 4. Work type filter (Onsite vs Hybrid vs Remote)
     if (selectedWorkType !== 'all' && j.workType !== selectedWorkType) {
       return false;
     }
 
-    // Category
-    if (selectedCategory !== 'all' && j.category !== selectedCategory) {
-      return false;
-    }
-
-    // Status
+    // 5. Application Pipeline status
     if (selectedStatus !== 'all' && j.status !== selectedStatus) {
       return false;
     }
@@ -80,179 +84,145 @@ export const JobRadar: React.FC<JobRadarProps> = ({
     return true;
   });
 
-  const mainlandCount = jobs.filter((j) =>
-    /mainland|ikeja|yaba|maryland|ilupeju|surulere|isolo|alausa|oregun|apapa|ogba/i.test(j.location)
-  ).length;
+  const nyscLagosCount = jobs.filter((j) => {
+    const isUsRemote = j.salaryStipend.includes('$') || j.jobType === 'Remote Contractor' || /remote/i.test(j.workType) || /us /i.test(j.title);
+    return (/lagos/i.test(j.location) || j.nyscPpaFriendly || j.jobType === 'NYSC PPA') && !isUsRemote;
+  }).length;
 
-  const remoteUsdCount = jobs.filter((j) =>
-    j.salaryStipend.includes('$') || j.jobType === 'Remote Contractor' || /remote/i.test(j.workType)
-  ).length;
-
-  const islandCount = jobs.filter((j) =>
-    /victoria island|ikoyi|lekki|\bvi\b|falomo|landmark|ozumba|marina/i.test(j.location)
+  const usRemoteCount = jobs.filter((j) =>
+    j.salaryStipend.includes('$') || j.jobType === 'Remote Contractor' || /remote/i.test(j.workType) || /us /i.test(j.title)
   ).length;
 
   return (
-    <div className="space-y-5">
-      {/* Refined Executive Placement Header Banner */}
-      <div className="bg-white rounded-xl border border-stone-200/90 p-5 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div className="space-y-1.5">
-          <div className="flex items-center gap-2 text-xs">
-            <span className="font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded text-[11px] border border-emerald-200">
-              NYSC Mobilization: Nov 4th
+    <div className="space-y-4">
+      {/* Placement Header Banner */}
+      <div className="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="space-y-1">
+          <div className="flex flex-wrap items-center gap-2 text-xs">
+            <span className="font-semibold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full text-[11px] border border-emerald-200 flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              Verified Placements · Active This Cycle
             </span>
-            <span className="text-stone-400">·</span>
-            <span className="text-stone-600 text-xs">
-              Lagos State PPA & Remote US Contracts
-            </span>
-            <span className="text-stone-400">·</span>
-            <span className="text-stone-500 text-xs">
-              Min ₦70,000/mo Stipend Threshold
+            <span className="text-slate-300">·</span>
+            <span className="text-slate-600 text-xs font-medium">
+              NYSC Lagos Placements & US Remote USD Contracts
             </span>
           </div>
-          <h2 className="text-lg sm:text-xl font-bold tracking-tight text-stone-900">
-            Lagos Corporate NYSC & Global Remote Placement Radar
+          <h2 className="text-lg sm:text-xl font-bold tracking-tight text-slate-900">
+            Lagos NYSC & US Remote Placement Directory
           </h2>
-          <p className="text-xs text-stone-600 max-w-3xl leading-relaxed">
-            Curated from Jobberman, Indeed Nigeria, Glassdoor, Twitter/X alerts, and corporate portals. Optimized for your <strong>B.Sc. Political Science Education (3.57/5.0)</strong> and <strong>1-year US Federal Bidding at Kadaj Alliance LLC</strong>.
+          <p className="text-xs text-slate-500 max-w-2xl leading-relaxed">
+            All positions categorized strictly by <strong>NYSC Lagos Opportunities</strong> and <strong>US Remote Contracts</strong>. Expired listings are automatically filtered out.
           </p>
         </div>
 
-        <button
-          onClick={onOpenDiagnostic}
-          className="self-start md:self-center px-3.5 py-2 rounded-lg bg-stone-900 hover:bg-stone-800 text-white font-medium text-xs transition-colors flex items-center gap-1.5 cursor-pointer shrink-0"
-        >
-          <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-          <span>Refine Criteria</span>
-        </button>
+        {/* Live Search Shortcut Engines */}
+        <div className="flex flex-wrap items-center gap-2">
+          <a
+            href="https://ng.indeed.com/jobs?q=NYSC+OR+%22Graduate+Trainee%22+OR+Procurement&l=Lagos&fromage=7"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-3 py-1.5 rounded-xl bg-sky-50 hover:bg-sky-100 text-sky-800 border border-sky-200 font-semibold text-xs transition-colors flex items-center gap-1.5 shadow-2xs"
+          >
+            <span>Indeed Lagos (Past 7 Days)</span>
+            <ExternalLink className="w-3 h-3" />
+          </a>
+          <a
+            href="https://www.jobberman.com/jobs?q=graduate+trainee&location=lagos"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 font-semibold text-xs transition-colors flex items-center gap-1.5 shadow-2xs"
+          >
+            <span>Jobberman Live</span>
+            <ExternalLink className="w-3 h-3" />
+          </a>
+        </div>
       </div>
 
-      {/* Control Bar: Clean Search & Segmented Corridor Tabs */}
-      <div className="bg-white rounded-xl border border-stone-200 p-4 shadow-xs space-y-3.5">
+      {/* Control Bar: Categories & Work-Type Filters */}
+      <div className="bg-white rounded-2xl border border-slate-200 p-4 shadow-xs space-y-3">
         {/* Search Input */}
         <div className="relative">
-          <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-stone-400" />
+          <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search by role, company (e.g. Flour Mills, Moniepoint, PZ Cussons, Julius Berger), or area (Ikeja, Yaba, VI)..."
-            className="w-full pl-10 pr-4 py-2 text-xs bg-stone-50 border border-stone-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 transition-all text-stone-900 placeholder:text-stone-400"
+            placeholder="Search verified company, role (e.g. Seven-Up, Cadbury, Moniepoint, Proposal Specialist)..."
+            className="w-full pl-10 pr-4 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 text-slate-900 placeholder:text-slate-400"
           />
         </div>
 
-        {/* Clean Segmented Corridor Buttons */}
-        <div className="flex flex-wrap items-center justify-between gap-2 pt-1 border-t border-stone-100">
+        {/* Segmented Category Buttons: NYSC Lagos vs US Remote */}
+        <div className="flex flex-wrap items-center justify-between gap-2 pt-1 border-t border-slate-100">
           <div className="flex flex-wrap items-center gap-1.5">
-            <span className="text-[11px] font-medium text-stone-500 mr-1">Zone:</span>
             <button
-              onClick={() => setSelectedLocationCorridor('all')}
-              className={`px-2.5 py-1 rounded-md text-xs font-medium cursor-pointer transition-colors ${
-                selectedLocationCorridor === 'all'
-                  ? 'bg-stone-900 text-white font-semibold'
-                  : 'bg-stone-100 hover:bg-stone-200 text-stone-700'
+              onClick={() => setSelectedCategory('all')}
+              className={`px-3 py-1.5 rounded-xl text-xs font-semibold cursor-pointer transition-all ${
+                selectedCategory === 'all'
+                  ? 'bg-slate-900 text-white shadow-xs'
+                  : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
               }`}
             >
-              All Roles ({jobs.length})
+              All Opportunities ({jobs.length})
             </button>
             <button
-              onClick={() => setSelectedLocationCorridor('mainland')}
-              className={`px-2.5 py-1 rounded-md text-xs font-medium cursor-pointer transition-colors ${
-                selectedLocationCorridor === 'mainland'
-                  ? 'bg-emerald-800 text-white font-semibold'
-                  : 'bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-200'
+              onClick={() => setSelectedCategory('nysc_lagos')}
+              className={`px-3 py-1.5 rounded-xl text-xs font-semibold cursor-pointer transition-all flex items-center gap-1.5 ${
+                selectedCategory === 'nysc_lagos'
+                  ? 'bg-sky-600 text-white shadow-xs'
+                  : 'bg-sky-50 hover:bg-sky-100 text-sky-800 border border-sky-200'
               }`}
             >
-              Mainland ₦70k+ ({mainlandCount})
+              <span>🇳🇬 NYSC Lagos Opportunities</span>
+              <span className="opacity-80">({nyscLagosCount})</span>
             </button>
             <button
-              onClick={() => setSelectedLocationCorridor('remote_usd')}
-              className={`px-2.5 py-1 rounded-md text-xs font-medium cursor-pointer transition-colors ${
-                selectedLocationCorridor === 'remote_usd'
-                  ? 'bg-amber-700 text-white font-semibold'
-                  : 'bg-amber-50 hover:bg-amber-100 text-amber-950 border border-amber-200'
+              onClick={() => setSelectedCategory('us_remote')}
+              className={`px-3 py-1.5 rounded-xl text-xs font-semibold cursor-pointer transition-all flex items-center gap-1.5 ${
+                selectedCategory === 'us_remote'
+                  ? 'bg-indigo-600 text-white shadow-xs'
+                  : 'bg-indigo-50 hover:bg-indigo-100 text-indigo-800 border border-indigo-200'
               }`}
             >
-              Remote US ($USD) ({remoteUsdCount})
-            </button>
-            <button
-              onClick={() => setSelectedLocationCorridor('island')}
-              className={`px-2.5 py-1 rounded-md text-xs font-medium cursor-pointer transition-colors ${
-                selectedLocationCorridor === 'island'
-                  ? 'bg-blue-800 text-white font-semibold'
-                  : 'bg-blue-50 hover:bg-blue-100 text-blue-900 border border-blue-200'
-              }`}
-            >
-              Island ({islandCount})
+              <span>🇺🇸 US Remote Contracts ($USD)</span>
+              <span className="opacity-80">({usRemoteCount})</span>
             </button>
           </div>
 
-          {/* Live Direct External Search Shortcuts */}
-          <div className="flex flex-wrap items-center gap-1.5 text-xs">
-            <span className="text-[11px] font-medium text-slate-500 mr-1">Live Engines:</span>
-            <a
-              href="https://ng.indeed.com/jobs?q=NYSC+OR+%22Graduate+Trainee%22+OR+Procurement&l=Lagos&fromage=7"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-2 py-1 bg-white hover:bg-sky-50 text-sky-700 border border-sky-200 rounded-md text-[11px] font-semibold flex items-center gap-1 shadow-2xs"
-            >
-              <span>Indeed (Past 7 Days)</span>
-              <ExternalLink className="w-2.5 h-2.5" />
-            </a>
-            <a
-              href="https://www.jobberman.com/jobs?q=graduate+trainee&location=lagos"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-2 py-1 bg-white hover:bg-sky-50 text-sky-700 border border-sky-200 rounded-md text-[11px] font-semibold flex items-center gap-1 shadow-2xs"
-            >
-              <span>Jobberman Lagos</span>
-              <ExternalLink className="w-2.5 h-2.5" />
-            </a>
-            <a
-              href="https://www.linkedin.com/jobs/search/?keywords=NYSC%20Lagos&location=Lagos%2C%20Nigeria"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-2 py-1 bg-white hover:bg-sky-50 text-sky-700 border border-sky-200 rounded-md text-[11px] font-semibold flex items-center gap-1 shadow-2xs"
-            >
-              <span>LinkedIn NYSC</span>
-              <ExternalLink className="w-2.5 h-2.5" />
-            </a>
-          </div>
-
-          {/* Compact Dropdown Filters */}
+          {/* Work-Type Dropdown & Expired Toggle */}
           <div className="flex items-center gap-2 text-xs">
             <select
               value={selectedWorkType}
               onChange={(e) => setSelectedWorkType(e.target.value)}
-              className="px-2 py-1 bg-stone-50 border border-stone-200 rounded-md text-stone-700 text-xs focus:outline-none"
+              className="px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-700 text-xs focus:outline-none"
             >
               <option value="all">All Work Types</option>
-              <option value="Hybrid">Hybrid</option>
               <option value="Onsite">Onsite</option>
+              <option value="Hybrid">Hybrid</option>
               <option value="Remote">Remote</option>
-            </select>
-
-            <select
-              value={selectedCategory}
-              onChange={(e) => setSelectedCategory(e.target.value)}
-              className="px-2 py-1 bg-stone-50 border border-stone-200 rounded-md text-stone-700 text-xs focus:outline-none"
-            >
-              <option value="all">All Categories</option>
-              <option value="Procurement & Bidding">Procurement & Bidding</option>
-              <option value="Operations & SCM">Operations & SCM</option>
-              <option value="Public Policy & Diplomacy">Public Policy & Diplomacy</option>
             </select>
 
             <select
               value={selectedStatus}
               onChange={(e) => setSelectedStatus(e.target.value)}
-              className="px-2 py-1 bg-stone-50 border border-stone-200 rounded-md text-stone-700 text-xs focus:outline-none"
+              className="px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-700 text-xs focus:outline-none"
             >
               <option value="all">All Statuses</option>
               <option value="new">New</option>
-              <option value="saved">To Apply</option>
+              <option value="saved">Saved (To Apply)</option>
               <option value="applied">Applied</option>
             </select>
+
+            <label className="hidden sm:flex items-center gap-1.5 text-[11px] font-medium text-slate-600 cursor-pointer pl-1">
+              <input
+                type="checkbox"
+                checked={hideExpired}
+                onChange={(e) => setHideExpired(e.target.checked)}
+                className="rounded border-slate-300 text-sky-600 focus:ring-sky-500"
+              />
+              <span>Hide Expired</span>
+            </label>
           </div>
         </div>
       </div>
@@ -262,69 +232,66 @@ export const JobRadar: React.FC<JobRadarProps> = ({
         {filteredJobs.map((job) => {
           const isSaved = job.status === 'saved' || job.status === 'preparing';
           const isApplied = job.status === 'applied' || job.status === 'interview';
-          const isSkipped = job.status === 'skipped';
 
           return (
             <div
               key={job.id}
-              className={`bg-white rounded-xl border transition-all duration-150 flex flex-col justify-between shadow-xs hover:border-stone-400 ${
-                isSkipped
-                  ? 'border-stone-200 opacity-60 bg-stone-50/50'
-                  : isApplied
-                  ? 'border-emerald-300 ring-1 ring-emerald-500/10'
+              className={`bg-white rounded-2xl border transition-all duration-150 flex flex-col justify-between shadow-xs hover:border-slate-300 hover:shadow-md ${
+                isApplied
+                  ? 'border-emerald-300 bg-emerald-50/20'
                   : isSaved
-                  ? 'border-amber-300 ring-1 ring-amber-500/10'
-                  : 'border-stone-200'
+                  ? 'border-sky-300 bg-sky-50/20'
+                  : 'border-slate-200'
               }`}
             >
               {/* Card Body */}
-              <div className="p-4 sm:p-5 space-y-3">
-                {/* Header: Title & Company first, clean unboxed metadata */}
+              <div className="p-5 space-y-3">
+                {/* Header: Title & Category Badge */}
                 <div>
                   <div className="flex items-start justify-between gap-3">
                     <h3
                       onClick={() => onSelectJob(job)}
-                      className="text-base font-bold text-stone-900 hover:text-emerald-700 cursor-pointer transition-colors leading-snug"
+                      className="text-base font-bold text-slate-900 hover:text-sky-600 cursor-pointer transition-colors leading-snug"
                     >
                       {job.title}
                     </h3>
-                    <span className="text-xs font-mono font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 shrink-0">
-                      {job.relevanceScore}% Fit
+                    <span className="text-[11px] font-semibold text-slate-700 bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-200 shrink-0">
+                      {job.workType}
                     </span>
                   </div>
 
-                  <div className="flex items-center gap-1.5 text-xs text-stone-600 pt-1">
-                    <span className="font-semibold text-stone-900">{job.company}</span>
-                    <span className="text-stone-300">·</span>
-                    <span className="text-stone-500">{job.location}</span>
-                    <span className="text-stone-300">·</span>
-                    <span className="text-stone-500">{job.workType}</span>
+                  <div className="flex items-center gap-1.5 text-xs text-slate-600 pt-1">
+                    <span className="font-semibold text-slate-900">{job.company}</span>
+                    <span className="text-slate-300">·</span>
+                    <span className="text-slate-500">{job.location}</span>
                   </div>
                 </div>
 
-                {/* Quiet Metadata Row without Pill Enclosures */}
-                <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-xs text-stone-500 py-1 border-y border-stone-100">
-                  <span className="font-medium text-stone-900">{job.salaryStipend}</span>
-                  <span className="text-stone-300">·</span>
-                  <span>Deadline: <strong className="text-stone-700 font-medium">{job.deadline}</strong></span>
-                  <span className="text-stone-300">·</span>
-                  <span>Source: {job.source}</span>
+                {/* Salary & Deadlines Strip */}
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-600 py-1.5 border-y border-slate-100">
+                  <span className="font-bold text-emerald-700">{job.salaryStipend}</span>
+                  <span className="text-slate-300">·</span>
+                  <span className="text-slate-500">
+                    Deadline: <strong className="text-slate-800 font-semibold">{job.deadline || 'Ongoing'}</strong>
+                  </span>
                   {job.nyscPpaFriendly && (
                     <>
-                      <span className="text-stone-300">·</span>
-                      <span className="text-emerald-700 font-medium">NYSC PPA Ready</span>
+                      <span className="text-slate-300">·</span>
+                      <span className="text-sky-700 font-semibold">NYSC PPA Ready</span>
                     </>
                   )}
                 </div>
 
-                {/* Role Duties & Requirements Preview */}
-                <div className="text-xs text-slate-600 space-y-1">
-                  <span className="text-[11px] font-semibold text-slate-800 block">Key Responsibilities:</span>
-                  <ul className="text-[11px] text-slate-600 space-y-1 pl-1">
-                    {(job.responsibilities?.slice(0, 2) || job.requirements.slice(0, 2)).map((req, idx) => (
-                      <li key={idx} className="flex items-start gap-1.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-sky-500 mt-1 shrink-0" />
-                        <span className="line-clamp-1">{req}</span>
+                {/* Role Responsibilities Preview (Indeed Style) */}
+                <div className="space-y-1">
+                  <span className="text-[11px] font-bold text-slate-800 uppercase tracking-wider block">
+                    Key Role Responsibilities:
+                  </span>
+                  <ul className="text-xs text-slate-600 space-y-1 pl-1">
+                    {(job.responsibilities?.slice(0, 2) || job.requirements?.slice(0, 2) || []).map((resp, idx) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-sky-500 mt-1.5 shrink-0" />
+                        <span className="line-clamp-1">{resp}</span>
                       </li>
                     ))}
                   </ul>
@@ -332,27 +299,27 @@ export const JobRadar: React.FC<JobRadarProps> = ({
               </div>
 
               {/* Card Footer Actions */}
-              <div className="px-4 sm:px-5 py-2.5 bg-stone-50/70 border-t border-stone-100 flex flex-wrap items-center justify-between gap-2 text-xs">
+              <div className="px-5 py-3 bg-slate-50 border-t border-slate-100 rounded-b-2xl flex flex-wrap items-center justify-between gap-2 text-xs">
                 {/* Pipeline Status Buttons */}
                 <div className="flex items-center gap-1.5">
                   <button
                     onClick={() => onUpdateStatus(job.id, isSaved ? 'new' : 'saved')}
-                    className={`px-2.5 py-1 rounded text-[11px] font-medium transition-colors cursor-pointer flex items-center gap-1 ${
+                    className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold transition-colors cursor-pointer flex items-center gap-1 ${
                       isSaved
-                        ? 'bg-amber-600 text-white'
-                        : 'bg-white border border-stone-200 text-stone-700 hover:bg-stone-100'
+                        ? 'bg-sky-600 text-white'
+                        : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-100'
                     }`}
                   >
                     <Bookmark className="w-3 h-3" />
-                    <span>{isSaved ? 'In Pipeline' : 'To Apply'}</span>
+                    <span>{isSaved ? 'In Pipeline' : 'Save'}</span>
                   </button>
 
                   <button
                     onClick={() => onUpdateStatus(job.id, isApplied ? 'new' : 'applied')}
-                    className={`px-2.5 py-1 rounded text-[11px] font-medium transition-colors cursor-pointer flex items-center gap-1 ${
+                    className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold transition-colors cursor-pointer flex items-center gap-1 ${
                       isApplied
-                        ? 'bg-emerald-700 text-white'
-                        : 'bg-white border border-stone-200 text-stone-700 hover:bg-stone-100'
+                        ? 'bg-emerald-600 text-white'
+                        : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-100'
                     }`}
                   >
                     <CheckCircle2 className="w-3 h-3" />
@@ -360,11 +327,11 @@ export const JobRadar: React.FC<JobRadarProps> = ({
                   </button>
                 </div>
 
-                {/* Right actions: Telegram & Details */}
+                {/* Right Action: View Full Details */}
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => onSendToTelegram(job)}
-                    className="p-1.5 rounded-lg bg-white border border-stone-200 text-stone-600 hover:text-sky-700 hover:border-sky-300 transition-colors cursor-pointer"
+                    className="p-1.5 rounded-lg bg-white border border-slate-200 text-slate-600 hover:text-sky-600 hover:border-sky-200 transition-colors cursor-pointer"
                     title="Send alert to your iPhone via Telegram"
                   >
                     <Send className="w-3.5 h-3.5 text-sky-600" />
@@ -372,9 +339,9 @@ export const JobRadar: React.FC<JobRadarProps> = ({
 
                   <button
                     onClick={() => onSelectJob(job)}
-                    className="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-[11px] font-semibold transition-colors cursor-pointer flex items-center gap-1 shadow-2xs"
+                    className="px-3.5 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold transition-colors cursor-pointer flex items-center gap-1 shadow-xs"
                   >
-                    <span>View Job Posting</span>
+                    <span>View Details</span>
                     <ChevronRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
@@ -385,20 +352,12 @@ export const JobRadar: React.FC<JobRadarProps> = ({
       </div>
 
       {filteredJobs.length === 0 && (
-        <div className="bg-white rounded-xl border border-stone-200 p-8 text-center space-y-2">
-          <p className="text-stone-700 font-medium text-sm">No opportunities match the selected filters.</p>
-          <button
-            onClick={() => {
-              setSearchQuery('');
-              setSelectedLocationCorridor('all');
-              setSelectedWorkType('all');
-              setSelectedCategory('all');
-              setSelectedStatus('all');
-            }}
-            className="text-xs text-emerald-700 font-semibold hover:underline"
-          >
-            Reset All Filters
-          </button>
+        <div className="p-12 text-center bg-white rounded-2xl border border-slate-200 space-y-3">
+          <Briefcase className="w-8 h-8 text-slate-400 mx-auto" />
+          <h3 className="font-bold text-slate-900 text-sm">No Active Listings in This Category</h3>
+          <p className="text-xs text-slate-500 max-w-sm mx-auto">
+            Try adjusting your search keywords, switching between NYSC Lagos and US Remote, or unchecking &quot;Hide Expired&quot;.
+          </p>
         </div>
       )}
     </div>
